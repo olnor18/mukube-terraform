@@ -15,6 +15,11 @@ variable "disk_storage_pool" {
   default = "local-lvm"
 }
 
+variable "target_node" {
+  type = string
+  description = "The proxmox node to create the VMs on"
+}
+
 variable "config_workers" {
   type = object({
     isos = list(string)

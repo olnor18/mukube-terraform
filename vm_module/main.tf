@@ -10,7 +10,7 @@ terraform {
 resource "proxmox_vm_qemu" "node"  {
     name = var.name
     desc = "A mukube test node"
-    target_node = "proxmox"
+    target_node = var.target_node
     iso = var.iso
     memory = var.memory
     cores = 2

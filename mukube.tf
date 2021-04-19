@@ -23,6 +23,7 @@ module "masters" {
   disks = var.config_masters.disks
   disk_size = var.config_masters.disk_size
   disk_storage_pool = var.disk_storage_pool
+  target_node = var.target_node
 }
 
 module "workers" {
@@ -34,5 +35,6 @@ module "workers" {
   disks = var.config_workers.disks
   disk_size = var.config_workers.disk_size
   disk_storage_pool = var.disk_storage_pool
+  target_node = var.target_node
 }
 
