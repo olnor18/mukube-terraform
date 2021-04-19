@@ -9,12 +9,19 @@ variable "admin_password" {
   sensitive = true
 }
 
+variable "disk_storage_pool" {
+  type = string
+  description = "The disk storage pool in Proxmox where the disk will be created"
+  default = "local-lvm"
+}
+
 variable "config_workers" {
   type = object({
     isos = list(string)
     memory = number
     disks = number
     disk_size = string
+    disk_storage_pool = string
   })
 }
 
@@ -24,6 +31,7 @@ variable "config_masters" {
     memory = number
     disks = number
     disk_size = string
+    disk_storage_pool = string
   })
   validation {
     condition = contains([1,3,5], length(var.config_masters.isos))

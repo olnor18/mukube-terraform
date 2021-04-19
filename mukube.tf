@@ -20,6 +20,9 @@ module "masters" {
   name = "master${count.index}"
   iso = var.config_masters.isos[count.index]
   memory = 35000
+  disks = var.config_masters.disks
+  disk_size = var.config_masters.disk_size
+  disk_storage_pool = var.disk_storage_pool
 }
 
 module "workers" {
@@ -28,5 +31,8 @@ module "workers" {
   name = "worker${count.index}"
   iso = var.config_workers.isos[count.index]
   memory = 15000
+  disks = var.config_workers.disks
+  disk_size = var.config_workers.disk_size
+  disk_storage_pool = var.disk_storage_pool
 }
 

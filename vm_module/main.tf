@@ -22,16 +22,14 @@ resource "proxmox_vm_qemu" "node"  {
       bridge = "vmbr0"
     }
 
-    disk {
-      type = var.disk_type
-      storage = "local-lvm"
-      size = "20G"
-    }
-
-    disk {
-      type = var.disk_type
-      storage = "local-lvm"
-      size = "20G"
+    dynamic "disk" {
+      for_each = range(var.disks)
+      content {
+        
+        type = var.disk_type
+        storage = var.disk_storage_pool
+        size = var.disk_size
+      }
     }
 
     vga {
