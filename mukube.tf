@@ -14,16 +14,19 @@ provider "proxmox" {
   pm_password = var.admin_password
 }
 
-module "master1" {
+module "masters" {
+  count = length(var.config_masters.isos)
   source = "./vm_module"
-  name = "master1"
-  iso = "/var/lib/vz/template/iso/master1.iso"
+  name = "master${count.index}"
+  iso = var.config_masters.isos[count.index]
   memory = 35000
 }
 
-module "cluster" {
-  source = "./cluster_module"
-  depends_on = [
-    module.master1,
-  ]
+module "workers" {
+  count = length(var.config_workers.isos)
+  source = "./vm_module"
+  name = "worker${count.index}"
+  iso = var.config_workers.isos[count.index]
+  memory = 15000
 }
+
