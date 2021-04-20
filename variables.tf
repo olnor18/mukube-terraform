@@ -1,6 +1,16 @@
 variable "proxmox_api_url" {
   type = string
 }
+
+variable "allow_tls_insecure" {
+  type = bool
+}
+
+variable "iso_path" {
+  type = string
+  description = "The absolute path to the iso folder in the Proxmox."
+}
+
 variable "admin_user" {
   type = string
 }
