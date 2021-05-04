@@ -17,7 +17,7 @@ provider "proxmox" {
 module "masters" {
   count = length(var.config_masters.isos)
   source = "./vm_module"
-  name = "master${count.index}"
+  name = "var.cluster_name-master${count.index}"
   iso = "${var.iso_path}${var.config_masters.isos[count.index]}"
   memory = 32000
   disks = var.config_masters.disks
@@ -29,7 +29,7 @@ module "masters" {
 module "workers" {
   count = length(var.config_workers.isos)
   source = "./vm_module"
-  name = "worker${count.index}"
+  name = "var.cluster_name-worker${count.index}"
   iso = "${var.iso_path}${var.config_workers.isos[count.index]}"
   memory = 15000
   disks = var.config_workers.disks

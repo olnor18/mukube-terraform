@@ -19,6 +19,10 @@ variable "admin_password" {
   sensitive = true
 }
 
+variable "cluster_name" {
+  type = string 
+}
+
 variable "disk_storage_pool" {
   type = string
   description = "The disk storage pool in Proxmox where the disk will be created"
