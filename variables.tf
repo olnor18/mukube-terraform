@@ -53,8 +53,8 @@ variable "config_masters" {
     disk_storage_pool = string
   })
   validation {
-    condition = contains([1,3,5], length(var.config_masters.isos))
-    error_message = "The number of masters can only be 1,3 or 5."
+    condition = contains([0,1,3,5], length(var.config_masters.isos))
+    error_message = "The number of masters can only be 0, 1, 3 or 5."
   }
 }
 
