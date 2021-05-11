@@ -36,7 +36,7 @@ variable "target_node" {
 
 variable "config_workers" {
   type = object({
-    isos = list(string)
+    count = number
     memory = number
     disks = number
     disk_size = string
@@ -46,14 +46,14 @@ variable "config_workers" {
 
 variable "config_masters" {
   type = object({
-    isos = list(string)
+    count = number
     memory = number
     disks = number
     disk_size = string
     disk_storage_pool = string
   })
   validation {
-    condition = contains([0,1,3,5], length(var.config_masters.isos))
+    condition = contains([0,1,3,5], var.config_masters.count)
     error_message = "The number of masters can only be 0, 1, 3 or 5."
   }
 }
