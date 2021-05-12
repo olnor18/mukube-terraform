@@ -25,7 +25,6 @@ resource "proxmox_vm_qemu" "node"  {
     dynamic "disk" {
       for_each = range(var.disks)
       content {
-        
         type = var.disk_type
         storage = var.disk_storage_pool
         size = var.disk_size
