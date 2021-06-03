@@ -37,6 +37,7 @@ variable "target_node" {
 variable "config_workers" {
   type = object({
     count = number
+    vms_start_id = number
     memory = number
     disks = number
     disk_size = string
@@ -47,6 +48,7 @@ variable "config_workers" {
 variable "config_masters" {
   type = object({
     count = number
+    vms_start_id = number
     memory = number
     disks = number
     disk_size = string

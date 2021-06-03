@@ -31,3 +31,7 @@ variable "disk_storage_pool" {
 variable "target_node" {
   type = string
 }
+
+variable "vm_id" {
+  type = number
+}

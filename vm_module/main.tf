@@ -16,6 +16,7 @@ resource "proxmox_vm_qemu" "node"  {
     cores = 2
     balloon = 1
     guest_agent_ready_timeout = 120
+    vmid = var.vm_id
     
     network {
       model = "e1000"
