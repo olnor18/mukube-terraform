@@ -34,6 +34,10 @@ variable "target_node" {
   description = "The proxmox node to create the VMs on"
 }
 
+variable "vms_start_id" {
+  type = number
+}
+
 variable "config_workers" {
   type = object({
     count = number
