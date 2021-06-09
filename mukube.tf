@@ -20,7 +20,7 @@ module "masters" {
   name = "${var.cluster_name}-master${count.index}"
   iso = "${var.iso_path}/${var.cluster_name}-master${count.index}.iso"
   vm_id = var.vms_start_id + count.index
-  memory = 32000
+  memory = var.config_masters.memory
   disks = var.config_masters.disks
   disk_size = var.config_masters.disk_size
   disk_storage_pool = var.disk_storage_pool
@@ -33,7 +33,7 @@ module "workers" {
   name = "${var.cluster_name}-worker${count.index}"
   iso = "${var.iso_path}/${var.cluster_name}-worker${count.index}.iso"
   vm_id = var.vms_start_id + var.config_masters.count + count.index
-  memory = 15000
+  memory = var.config_workers.memory
   disks = var.config_workers.disks
   disk_size = var.config_workers.disk_size
   disk_storage_pool = var.disk_storage_pool
