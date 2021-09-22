@@ -2,7 +2,7 @@ terraform {
   required_providers {
     proxmox = {
       source = "Telmate/proxmox"
-      version = "2.7.1"
+      version = "2.7.4"
     }
   }
 }
@@ -23,7 +23,7 @@ module "masters" {
   memory = var.config_masters.memory
   disks = var.config_masters.disks
   disk_size = var.config_masters.disk_size
-  disk_storage_pool = var.disk_storage_pool
+  disk_storage_pool = var.config_masters.disk_storage_pool
   target_node = var.target_node
 }
 
@@ -36,7 +36,7 @@ module "workers" {
   memory = var.config_workers.memory
   disks = var.config_workers.disks
   disk_size = var.config_workers.disk_size
-  disk_storage_pool = var.disk_storage_pool
+  disk_storage_pool = var.config_workers.disk_storage_pool
   target_node = var.target_node
   depends_on = [
     module.masters
