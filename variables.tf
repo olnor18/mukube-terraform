@@ -14,6 +14,7 @@ variable "iso_path" {
 variable "admin_user" {
   type = string
 }
+
 variable "admin_password" {
   type = string
   sensitive = true
@@ -21,12 +22,6 @@ variable "admin_password" {
 
 variable "cluster_name" {
   type = string 
-}
-
-variable "disk_storage_pool" {
-  type = string
-  description = "The disk storage pool in Proxmox where the disk will be created"
-  default = "local-lvm"
 }
 
 variable "target_node" {
