@@ -13,13 +13,19 @@ variable "allow_tls_insecure" {
   type = bool
 }
 
-variable "iso_path" {
+variable "os_path" {
   type = string
-  description = "The absolute path to the iso folder in the Proxmox."
+  description = "The absolute path to the os folder in the Proxmox."
+}
+
+variable "os_format" {
+  description = "The format of the os"
+  type = string
 }
 
 variable "admin_user" {
   type = string
+  sensitive = true
 }
 
 variable "admin_password" {
@@ -47,6 +53,8 @@ variable "config_workers" {
     disks = number
     disk_size = string
     disk_storage_pool = string
+    bios = string
+    scsihw = string
   })
 }
 
@@ -57,6 +65,8 @@ variable "config_masters" {
     disks = number
     disk_size = string
     disk_storage_pool = string
+    bios = string
+    scsihw = string
   })
   validation {
     condition = contains([0,1,3,5], var.config_masters.count)

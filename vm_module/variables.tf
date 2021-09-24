@@ -1,5 +1,9 @@
-variable "iso" {
+variable "os" {
   type = string
+}
+
+variable "os_format" {
+  type = string 
 }
 
 variable "name" {
@@ -35,3 +39,32 @@ variable "target_node" {
 variable "vm_id" {
   type = number
 }
+
+variable "user" {
+  description = "The user to do use for ssh connection execution of scripts"
+  type = string
+}
+
+variable "host" {
+  description = "The host to use as an endpoint for remote shh execution"
+  type = string
+}
+
+variable "password" {
+  description = "password for the user to use for the ssh connection"
+  type = string
+  sensitive = true
+}
+
+variable "bios" {
+  description = "The BIOS used in the vm"
+  type = string
+  default = "seabios"
+}
+
+variable "scsihw" {
+  description = "The SCSI controller to use in the VM"
+  type = string
+  default = "lsi"
+}
+

@@ -11,7 +11,7 @@ resource "proxmox_vm_qemu" "node"  {
     name = var.name
     desc = "A mukube test node"
     target_node = var.target_node
-    iso = var.iso
+    iso = var.image_format == "iso" ? var.image_path : "/var/lib/vz/template/wic/alphine-noop.iso" #'iso' is a required field
     memory = var.memory
     cores = 2
     balloon = 1
