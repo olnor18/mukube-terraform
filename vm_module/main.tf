@@ -21,7 +21,7 @@ resource "proxmox_vm_qemu" "node"  {
     scsihw = var.scsihw
     
     network {
-      model = "e1000"
+      model = var.network_model
       bridge = "vmbr0"
     }
 

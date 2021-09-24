@@ -55,6 +55,7 @@ variable "config_workers" {
     disk_storage_pool = string
     bios = string
     scsihw = string
+    network_model = string
   })
 }
 
@@ -67,6 +68,7 @@ variable "config_masters" {
     disk_storage_pool = string
     bios = string
     scsihw = string
+    network_model = string
   })
   validation {
     condition = contains([0,1,3,5], var.config_masters.count)

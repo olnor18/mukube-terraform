@@ -27,11 +27,11 @@ module "masters" {
   disk_storage_pool = var.config_masters.disk_storage_pool
   bios = var.config_masters.bios
   scsihw = var.config_masters.scsihw
+  network_model = var.config_masters.network_model
   target_node = var.target_node
   user = var.admin_user
   host = var.proxmox_host_endpoint
   password = var.admin_password
-
 }
 
 module "workers" {
@@ -47,6 +47,7 @@ module "workers" {
   disk_storage_pool = var.config_workers.disk_storage_pool
   bios = var.config_workers.bios
   scsihw = var.config_workers.scsihw
+  network_model = var.config_workers.network_model
   target_node = var.target_node
   user = var.admin_user
   host = var.proxmox_host_endpoint

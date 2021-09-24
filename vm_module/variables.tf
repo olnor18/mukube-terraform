@@ -68,3 +68,8 @@ variable "scsihw" {
   default = "lsi"
 }
 
+variable "network_model" {
+  description = "The network model"
+  type = string
+  default = "e1000"
+}
