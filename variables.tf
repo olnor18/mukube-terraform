@@ -1,5 +1,12 @@
-variable "proxmox_api_url" {
+variable "proxmox_host_endpoint" {
   type = string
+  description = "The ip or url of the Proxmox machine"
+}
+
+variable "proxmox_api_port" {
+  type = string
+  description = "The port to connect to the proxmox api on"
+  default = "8006"
 }
 
 variable "allow_tls_insecure" {
