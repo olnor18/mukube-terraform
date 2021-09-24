@@ -28,6 +28,10 @@ module "masters" {
   bios = var.config_masters.bios
   scsihw = var.config_masters.scsihw
   target_node = var.target_node
+  user = var.admin_user
+  host = var.proxmox_host_endpoint
+  password = var.admin_password
+
 }
 
 module "workers" {
@@ -44,6 +48,9 @@ module "workers" {
   bios = var.config_workers.bios
   scsihw = var.config_workers.scsihw
   target_node = var.target_node
+  user = var.admin_user
+  host = var.proxmox_host_endpoint
+  password = var.admin_password
   depends_on = [
     module.masters
   ]

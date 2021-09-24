@@ -38,3 +38,30 @@ resource "proxmox_vm_qemu" "node"  {
       type = "virtio"
     }
 }
+
+resource "null_resource" "disk_image_import_attach" {
+  count = var.os_format == "wic" ? 1 : 0
+
+  connection {
+      type        = "ssh"
+      user        = var.user
+      host        = var.host
+      password = var.password
+  }
+
+  provisioner "file" {
+    source = "script.sh" 
+    destination = "/tmp/script.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/script.sh",
+      "/tmp/script.sh ${var.vm_id} ${var.os} ${var.disk_storage_pool} ${var.disks}",
+    ]
+  }
+
+  depends_on = [
+      proxmox_vm_qemu.node
+    ]
+}
