@@ -25,6 +25,8 @@ module "masters" {
   disks = var.config_masters.disks
   disk_size = var.config_masters.disk_size
   disk_storage_pool = var.config_masters.disk_storage_pool
+  bios = var.config_masters.bios
+  scsihw = var.config_masters.scsihw
   target_node = var.target_node
 }
 
@@ -39,6 +41,8 @@ module "workers" {
   disks = var.config_workers.disks
   disk_size = var.config_workers.disk_size
   disk_storage_pool = var.config_workers.disk_storage_pool
+  bios = var.config_workers.bios
+  scsihw = var.config_workers.scsihw
   target_node = var.target_node
   depends_on = [
     module.masters

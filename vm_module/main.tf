@@ -17,6 +17,8 @@ resource "proxmox_vm_qemu" "node"  {
     balloon = 1
     guest_agent_ready_timeout = 10
     vmid = var.vm_id
+    bios = var.bios
+    scsihw = var.scsihw
     
     network {
       model = "e1000"
