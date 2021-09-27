@@ -40,7 +40,7 @@ resource "proxmox_vm_qemu" "node"  {
 }
 
 resource "null_resource" "disk_image_import_attach" {
-  count = var.os_format == "wic" ? 1 : 0
+  count = var.image_format == "wic" ? 1 : 0
 
   connection {
       type        = "ssh"
@@ -57,7 +57,7 @@ resource "null_resource" "disk_image_import_attach" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/script.sh",
-      "/tmp/script.sh ${var.vm_id} ${var.os} ${var.disk_storage_pool} ${var.disks}",
+      "/tmp/script.sh ${var.vm_id} ${var.image_path} ${var.disk_storage_pool} ${var.disks}",
     ]
   }
 

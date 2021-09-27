@@ -1,8 +1,8 @@
-variable "os" {
+variable "image_path" {
   type = string
 }
 
-variable "os_format" {
+variable "image_format" {
   type = string 
 }
 

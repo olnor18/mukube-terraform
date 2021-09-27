@@ -1,6 +1,6 @@
 #!/bin/bash
 VM_ID=$1
-OS_PATH=$2
+IMAGE_PATH=$2
 STORAGE_POOL=$3
 # The new imported disk will get a name that depends on the current number of disks for the vm 
 DISK_COUNT=$4

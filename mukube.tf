@@ -18,8 +18,8 @@ module "masters" {
   count = var.config_masters.count
   source = "./vm_module"
   name = "${var.cluster_name}-master${count.index}"
-  os = "${var.os_path}/${var.cluster_name}-master${count.index}.${var.os_format}"
-  os_format = var.os_format
+  image_path = "${var.image_folder_path}/${var.cluster_name}-master${count.index}.${var.image_format}"
+  image_format = var.image_format
   vm_id = var.vms_start_id + count.index
   memory = var.config_masters.memory
   disks = var.config_masters.disks
@@ -38,8 +38,8 @@ module "workers" {
   count = var.config_workers.count
   source = "./vm_module"
   name = "${var.cluster_name}-worker${count.index}"
-  os = "${var.os_path}/${var.cluster_name}-worker${count.index}.${var.os_format}"
-  os_format = var.os_format
+  image_path = "${var.image_folder_path}/${var.cluster_name}-worker${count.index}.${var.image_format}"
+  image_format = var.image_format
   vm_id = var.vms_start_id + var.config_masters.count + count.index
   memory = var.config_workers.memory
   disks = var.config_workers.disks

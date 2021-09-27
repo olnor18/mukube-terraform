@@ -13,13 +13,13 @@ variable "allow_tls_insecure" {
   type = bool
 }
 
-variable "os_path" {
+variable "image_folder_path" {
   type = string
-  description = "The absolute path to the os folder in the Proxmox."
+  description = "The local image folder path Proxmox."
 }
 
-variable "os_format" {
-  description = "The format of the os"
+variable "image_format" {
+  description = "The format of the image file"
   type = string
 }
 
