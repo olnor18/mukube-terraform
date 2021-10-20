@@ -78,8 +78,8 @@ resource "libvirt_domain" "node" {
   count    = var.machines
   name     = "mukube-${random_id.cluster_id.hex}-${count.index}"
   machine  = "q35"
-  memory   = 4096
-  vcpu     = 1
+  memory   = 8192
+  vcpu     = 2
   firmware = "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd"
   nvram {
     file     = ""
