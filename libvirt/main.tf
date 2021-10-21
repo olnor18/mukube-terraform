@@ -26,6 +26,10 @@ variable "mukube_config_image" {
   type = list(string)
 }
 
+variable "cidr_subnet" {
+  type = string
+}
+
 variable "machines" {
   type    = number
   default = 1
@@ -74,12 +78,32 @@ resource "libvirt_volume" "extra" {
   size     = 1024 * 1024 * 1024 * var.extra_disk_size
 }
 
+resource "libvirt_network" "network" {
+  name      = "mukube-${random_id.cluster_id.hex}-net"
+  addresses = [var.cidr_subnet]
+  mode      = "none"
+  dhcp {
+    enabled = true
+  }
+  dns {
+    enabled = true
+  }
+  xml {
+    # Set the network forward mode to open.
+    xslt = file("xslt-network-tweaks.xsl")
+  }
+  lifecycle {
+    # Temporary hack untill open is available in the provider
+    ignore_changes = [mode]
+  }
+}
+
 resource "libvirt_domain" "node" {
   count    = var.machines
   name     = "mukube-${random_id.cluster_id.hex}-${count.index}"
   machine  = "q35"
-  memory   = 4096
-  vcpu     = 1
+  memory   = 8192
+  vcpu     = 2
   firmware = "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd"
   nvram {
     file     = ""
@@ -87,7 +111,7 @@ resource "libvirt_domain" "node" {
   }
 
   network_interface {
-    network_name = "default"
+    network_id = libvirt_network.network.id
   }
 
   disk {
