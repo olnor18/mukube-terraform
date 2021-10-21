@@ -26,6 +26,10 @@ variable "mukube_config_image" {
   type = list(string)
 }
 
+variable "cidr_subnet" {
+  type = string
+}
+
 variable "machines" {
   type    = number
   default = 1
@@ -74,6 +78,18 @@ resource "libvirt_volume" "extra" {
   size     = 1024 * 1024 * 1024 * var.extra_disk_size
 }
 
+resource "libvirt_network" "network" {
+  name      = "mukube-${random_id.cluster_id.hex}-net"
+  addresses = [var.cidr_subnet]
+  mode      = "none"
+  dhcp {
+    enabled = true
+  }
+  dns {
+    enabled = true
+  }
+}
+
 resource "libvirt_domain" "node" {
   count    = var.machines
   name     = "mukube-${random_id.cluster_id.hex}-${count.index}"
@@ -87,7 +103,7 @@ resource "libvirt_domain" "node" {
   }
 
   network_interface {
-    network_name = "default"
+    network_id = libvirt_network.network.id
   }
 
   disk {

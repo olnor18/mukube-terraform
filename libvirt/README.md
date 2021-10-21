@@ -11,6 +11,7 @@
     machines            = 1
     extra_disks         = 2
     extra_disk_size     = 10
+    cidr_subnet         = "192.168.1.0/24"
     mukube_image        = "images/mukube-dev-image-mukube-20211004124859.rootfs.wic"
     mukube_config_image = ["../../mukube-configurator/artifacts/test-master0.ext4"]
     ```
