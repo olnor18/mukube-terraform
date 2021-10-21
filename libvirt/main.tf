@@ -88,6 +88,14 @@ resource "libvirt_network" "network" {
   dns {
     enabled = true
   }
+  xml {
+    # Set the network forward mode to open.
+    xslt = file("xslt-network-tweaks.xsl")
+  }
+  lifecycle {
+    # Temporary hack untill open is available in the provider
+    ignore_changes = [mode]
+  }
 }
 
 resource "libvirt_domain" "node" {
