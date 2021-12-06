@@ -6,10 +6,6 @@ terraform {
   }
 }
 
-provider "libvirt" {
-  uri = var.libvirt_uri
-}
-
 locals {
   extra_disks = [for i in range(var.machines) :
     [for d in range(var.extra_disks) : "${i}-${d}"]

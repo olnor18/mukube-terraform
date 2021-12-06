@@ -1,7 +1,3 @@
-variable "libvirt_uri" {
-  type = string
-}
-
 variable "cluster_id" {
   type = string
 }
