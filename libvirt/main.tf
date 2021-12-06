@@ -35,6 +35,16 @@ variable "machines" {
   default = 1
 }
 
+variable "vcpus" {
+  type    = number
+  default = 2
+}
+
+variable "memory" {
+  type    = number
+  default = 8192
+}
+
 variable "extra_disks" {
   type    = number
   default = 0
@@ -102,8 +112,8 @@ resource "libvirt_domain" "node" {
   count    = var.machines
   name     = "mukube-${random_id.cluster_id.hex}-${count.index}"
   machine  = "q35"
-  memory   = 8192
-  vcpu     = 2
+  memory   = var.memory
+  vcpu     = var.vcpus
   firmware = "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd"
   nvram {
     file     = ""
