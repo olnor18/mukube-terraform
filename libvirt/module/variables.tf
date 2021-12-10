@@ -15,26 +15,31 @@ variable "cidr_subnet" {
 }
 
 variable "machines" {
-  type    = number
-  default = 1
+  type     = number
+  nullable = false
+  default  = 1
 }
 
 variable "vcpus" {
-  type    = number
-  default = 2
+  type     = number
+  nullable = false
+  default  = 2
 }
 
 variable "memory" {
-  type    = number
-  default = 8192
+  type     = number
+  nullable = false
+  default  = 8192
 }
 
 variable "extra_disks" {
-  type    = number
-  default = 0
+  type     = number
+  nullable = false
+  default  = 0
 }
 
 variable "extra_disk_size" {
-  type    = number
-  default = 20
+  type     = number
+  nullable = false
+  default  = 20
 }
