@@ -1,7 +1,8 @@
 terraform {
   required_providers {
     libvirt = {
-      source = "dmacvicar/libvirt"
+      source  = "dmacvicar/libvirt"
+      version = ">= 0.6.12"
     }
   }
 }
@@ -38,16 +39,12 @@ resource "libvirt_volume" "extra" {
 resource "libvirt_network" "network" {
   name      = "mukube-${var.cluster_id}-net"
   addresses = [var.cidr_subnet]
-  mode      = "none"
+  mode      = "open"
   dhcp {
     enabled = true
   }
   dns {
     enabled = true
-  }
-  xml {
-    # Set the network forward mode to open.
-    xslt = file("${path.module}/xslt-network-tweaks.xsl")
   }
   lifecycle {
     # Temporary hack untill open is available in the provider
@@ -92,6 +89,7 @@ resource "libvirt_domain" "node" {
   graphics {
     type        = "vnc"
     listen_type = "address"
+    websocket   = -1
   }
 
   console {
@@ -100,8 +98,8 @@ resource "libvirt_domain" "node" {
     target_type = "serial"
   }
 
-  xml {
-    # Add TPM device and enable websocket
-    xslt = file("${path.module}/xslt-tweaks.xsl")
+  tpm {
+    backend_type    = "emulator"
+    backend_version = "2.0"
   }
 }
