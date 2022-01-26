@@ -29,7 +29,7 @@ variable "vcpus" {
 variable "memory" {
   type     = number
   nullable = false
-  default  = 8192
+  default  = 16384
 }
 
 variable "extra_disks" {
