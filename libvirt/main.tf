@@ -21,7 +21,7 @@ resource "random_id" "cluster_id" {
 module "mukube_libvirt" {
   source = "./module"
 
-  cluster_id          = random_id.cluster_id.hex
+  cluster_id          = trim("${var.cluster_id_prefix}-${random_id.cluster_id.hex}", "-")
   mukube_image        = var.mukube_image
   mukube_config_image = var.mukube_config_image
   cidr_subnet         = var.cidr_subnet
